@@ -1,0 +1,32 @@
+{
+  "name": "reef-push-dispatcher",
+  "version": "1.0.0",
+  "description": "Reef's push notifications dispatcher microservice",
+  "main": "index.js",
+  "repository": "https://github.com/line64/reef-push-dispatcher.git",
+  "author": "Line64",
+  "license": "MIT",
+  "scripts": {
+    "compile": "babel -d ./dist ./src",
+    "test": "mocha test/*",
+    "prestart": "babel -d ./dist ./src",
+    "start": "node dist/index.js | bunyan"
+  },
+  "dependencies": {
+    "bunyan": "^1.8.5",
+    "node-gcm": "^0.14.4",
+    "reef-service": "^1.0.0-beta.7"
+  },
+  "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-cli": "^6.18.0",
+    "babel-core": "^6.18.2",
+    "babel-loader": "^6.2.8",
+    "babel-plugin-transform-runtime": "^6.15.0",
+    "babel-polyfill": "^6.16.0",
+    "babel-preset-es2015": "^6.18.0",
+    "babel-preset-stage-0": "^6.16.0",
+    "babel-runtime": "^6.18.0",
+    "dotenv": "^2.0.0"
+  }
+}
