@@ -14,8 +14,7 @@ export default function(state, params) {
 
     let {
       devicePlatform: platform,
-      sender: senderId,
-      ...customPayload
+      sender: senderId
     } = params;
 
     bunyan.info('ensuring gateway', { senderId, platform });
@@ -31,13 +30,13 @@ export default function(state, params) {
         case 'android':
           return sendAndroidNotification(state, {
             gateway,
-            ...customPayload
+            ...params
           });
 
         case 'ios':
           return sendIOSNotification(state, {
             gateway,
-            ...customPayload
+            ...params
           });
 
         default:

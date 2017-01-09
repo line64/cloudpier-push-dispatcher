@@ -12,10 +12,13 @@ export default async function (state, params) {
     recipient,
     sender,
     priority,
-    contentAvailable,
-    delayWhileIdle,
-    timeToLive,
-    data
+    expiry,
+    platformPayload: {
+      contentAvailable,
+      delayWhileIdle,
+      sound,
+      content
+    }
   } = params;
 
   if(!gateway) {
@@ -28,8 +31,8 @@ export default async function (state, params) {
     priority: priority || 'high',
     contentAvailable: contentAvailable || true,
     delayWhileIdle: delayWhileIdle || true,
-    timeToLive: timeToLive || 3,
-    data: data || {}
+    timeToLive: expiry || 3,
+    data: content
   });
 
   if (dryRun) {
@@ -42,7 +45,7 @@ export default async function (state, params) {
 
   try {
 
-    bunyan.info('sending message through gcm', { message, recipient });
+    bunyan.info('sending message through gcm', JSON.stringify(message));
 
     return await new Promise((resolve, reject) => {
 
@@ -51,6 +54,7 @@ export default async function (state, params) {
         bunyan.info('processing callback from gcm', { response, gcmError });
 
         if (gcmError) {
+          console.log(response.results);
           reject(gcmError);
           return;
         }
@@ -60,6 +64,9 @@ export default async function (state, params) {
         } = response;
 
         let success = (gcmSuccess > 0);
+
+                  console.log(response.results);
+
 
         resolve({ success });
 

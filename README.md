@@ -1,8 +1,8 @@
-#Reef push dispatcher service
+# Reef push dispatcher service
 
 Reef's push notifications dispatcher microservice
 
-##Usage
+## Usage
 
 Instalation with npm:
     
@@ -14,44 +14,96 @@ Installation with yarn:
     yarn
     npm start
 
-##Push notification command 
+## `PUSH_NOTIFICATION` command 
 
-`PUSH_NOTIFICATION`
+#### IOS
+```
+PUSH_NOTIFICATION: command({
+    dryRun: Boolean,
+    recipient: String (deviceToken), 
+    sender: String,
+    devicePlatform: String,
+    expiry: String,
+    priority: String ('normal'|'high')
+    platformPayload: { 
+        topic: String,
+        badge: Number,
+        sound: String,
+        content: Any
+   }
+}) => {
+    success: Boolean
+};
+```
 
-    PUSH_NOTIFICATION: command({
-        dryRun: boolean, (no server impact)
-        recipient: string (deviceToken), 
-        sender: string (domain),
-        devicePlatform: string (SO),
-        priority: string,
-        contentAvailable: boolean,
-        delayWhileIdle: boolean,
-        timeToLive: int,
-        data: {
-            title: string,
-            message: string,
-            data: Object
-        }, 
-    }) => {
-        success: boolean
-    };
+#### ANDROID
+```
+PUSH_NOTIFICATION: command({
+    dryRun: Boolean,
+    recipient: String (deviceToken), 
+    sender: String,
+    devicePlatform: String,
+    expiry: String,
+    priority: String ('normal'|'high')
+    platformPayload: { 
+        sound: String,
+        contentAvailable: Boolean,
+        delayWhileIdle: Boolean,
+        content: Any
+   }
+}) => {
+    success: Boolean
+};
+```
 
+## Examples
 
-`PUSH_NOTIFICATION (example)`
-
-    PUSH_NOTIFICATION: command({
-        "dryRun": false,
-        "recipient": "eWkdJjCvnMc:APA91bEUdtM",
-        "sender": "wanku",
-        "devicePlatform": "android",
-        "priority": "high",
-        "contentAvailable": true,
-        "delayWhileIdle": true,
-        "timeToLive": 3,
-        "data": {
-            "title": "A message title",
-            "message": "A message text",
-            "data": { 
+#### IOS
+```
+PUSH_NOTIFICATION: command({
+    dryRun: false,
+    recipient: "<aDeviceToken>", 
+    sender: "<aSender>",
+    devicePlatform: 'ios',
+    expiry: String,
+    priority: 'normal'
+    platformPayload: { 
+        topic: "<app-bundle-id>",
+        sound: "chime.caf",
+        badge: 10,
+        content: {
+            title: "This is the title",
+            message: "A message text",
+            payload: {
             }
         }
-    })
+   }
+}) => {
+    success: Boolean
+};
+```
+
+#### ANDROID 
+```
+PUSH_NOTIFICATION: command({
+    dryRun: false,
+    recipient: "<aDeviceToken>", 
+    sender: "<aSender>",
+    devicePlatform: 'android',
+    expiry: String,
+    priority: 'normal'
+    platformPayload: { 
+        sound: "ching.mp3",
+        contentAvailable: true,
+        delayWhileIdle: true,
+        content: {
+            title: "This is the title",
+            message: "A message text",
+            data: { 
+            }
+        }
+   }
+}) => {
+    success: Boolean
+};
+```
