@@ -28,7 +28,7 @@ export default function (state, params) {
 
   let options = {
     token: {
-      key: __dirname + '/APNsAuthKey_HK643CNFZ4.p8',
+      key: `${__dirname}/${key}`,
       keyId,
       teamId
     },
