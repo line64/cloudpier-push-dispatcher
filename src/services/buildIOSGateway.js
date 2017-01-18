@@ -9,14 +9,12 @@ export default function (state, params) {
   bunyan.info('bulding env var key', params);
 
   let envKeyId = `KEYID_${gatewayId}`,
-      envKeyTeamId = `TEAMID_${gatewayId}`,
-      envKeyPath = `KEYPATH_${gatewayId}`;
+      envKeyTeamId = `TEAMID_${gatewayId}`
 
   bunyan.info('looking for keys env var in state', { envKeyId, envKeyTeamId });
 
   let keyId = environment[envKeyId],
-      teamId = environment[envKeyTeamId],
-      key = environment[envKeyPath];
+      teamId = environment[envKeyTeamId];
 
   bunyan.info('key and team ids found for gateway', { keyId, teamId, gatewayId });
 
@@ -28,12 +26,14 @@ export default function (state, params) {
 
   let options = {
     token: {
-      key: `${__dirname}/${key}`,
+      key: `${__dirname}/APNsAuthKey_${keyId}.p8`,
       keyId,
       teamId
     },
     production: false
   };
+
+  console.log(options);
 
   return new apn.Provider(options);
 
