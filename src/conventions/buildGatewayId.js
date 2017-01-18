@@ -8,6 +8,6 @@ export default function (senderId, platform) {
   senderId = senderId.toUpperCase();
   platform = platform.toUpperCase();
 
-  return `${senderId}_${platform}`;
+  return `${platform}_${senderId}`;
 
 }

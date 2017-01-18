@@ -8,7 +8,7 @@ export default function (state, params) {
 
   bunyan.info('bulding env var key', params);
 
-  let envKey = `APIKEY_${gatewayId}`;
+  let envKey = `${gatewayId}_APIKEY`;
 
   bunyan.info('looking for api key env var in state', { envKey });
 

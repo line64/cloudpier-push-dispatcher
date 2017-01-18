@@ -8,13 +8,13 @@ export default function (state, params) {
 
   bunyan.info('bulding env var key', params);
 
-  let envKeyId = `KEYID_${gatewayId}`,
-      envKeyTeamId = `TEAMID_${gatewayId}`
+  let envKeyId = `${gatewayId}_KEYID`,
+      envTeamId = `${gatewayId}_TEAMID`;
 
-  bunyan.info('looking for keys env var in state', { envKeyId, envKeyTeamId });
+  bunyan.info('looking for keys env var in state', { envKeyId, envTeamId });
 
   let keyId = environment[envKeyId],
-      teamId = environment[envKeyTeamId];
+      teamId = environment[envTeamId];
 
   bunyan.info('key and team ids found for gateway', { keyId, teamId, gatewayId });
 
@@ -33,7 +33,7 @@ export default function (state, params) {
     production: true
   };
 
-  console.log(options);
+  bunyan.info(options);
 
   return new apn.Provider(options);
 
