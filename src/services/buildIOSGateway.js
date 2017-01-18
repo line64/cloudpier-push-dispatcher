@@ -30,7 +30,7 @@ export default function (state, params) {
       keyId,
       teamId
     },
-    production: false
+    production: true
   };
 
   console.log(options);
