@@ -1,9 +1,9 @@
 {
-  "name": "reef-push-dispatcher",
+  "name": "cloudpier-push-dispatcher",
   "version": "1.0.0",
-  "description": "Reef's push notifications dispatcher microservice",
+  "description": "Cloudpier's push notifications dispatcher microservice",
   "main": "index.js",
-  "repository": "https://github.com/line64/reef-push-dispatcher.git",
+  "repository": "https://github.com/line64/cloudpier-push-dispatcher.git",
   "author": "Line64",
   "license": "MIT",
   "scripts": {
