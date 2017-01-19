@@ -1,6 +1,6 @@
-# Reef push dispatcher service
+# Cloudpier push dispatcher
 
-Reef's push notifications dispatcher microservice
+Cloudpier's push notifications dispatcher microservice
 
 ## Usage
 

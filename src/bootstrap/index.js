@@ -14,7 +14,7 @@ export async function setupStateAsync(config) {
     region: config.AWS_REGION,
     accessKeyId: config.AWS_ACCESSKEYID,
     secretAccessKey: config.AWS_SECRETACCESSKEY,
-    serviceDomain: 'reef-push-dispatcher',
+    serviceDomain: 'cloudpier-push-dispatcher',
     serviceLane: config.REEF_SERVICE_LANE
   }, bunyan);
 
