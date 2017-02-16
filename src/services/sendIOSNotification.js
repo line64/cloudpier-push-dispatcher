@@ -31,9 +31,9 @@ export default async function (state, params) {
     message.topic = topic;
     message.expiry = expiry || Math.floor(Date.now() / 1000) + 3600;
     message.priority = (priority === 'high') ? '10' : '8';
-    message.badge = badge || 3;
     message.sound = sound || "ping.aiff";
     message.alert = content.message;
+    message.contentAvailable = 1;
     
     if(content.payload) 
         message.payload = content.payload;
