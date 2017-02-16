@@ -53,20 +53,21 @@ export default async function (state, params) {
 
         bunyan.info('processing callback from gcm', { response, gcmError });
 
-        if (gcmError) {
-          console.log(response.results);
-          reject(gcmError);
-          return;
-        }
-
         let {
+          failure: gcmFailure,
           success: gcmSuccess
         } = response;
 
-        let success = (gcmSuccess > 0);
+        let success = (gcmSuccess > 0),
+            failure = (gcmFailure > 0)
 
-                  console.log(response.results);
+        if (failure) {
+          bunyan.error(`error sending notification to recipient: ${recipient}`, response);
+          resolve({ success: false, error: response.results[0].error });
+          return;
+        }
 
+        if(success) bunyan.info(`sent successfully notification to recipient: ${recipient}`, response);
 
         resolve({ success });
 

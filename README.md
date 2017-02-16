@@ -2,6 +2,11 @@
 
 Cloudpier's push notifications dispatcher microservice
 
+## Current Version
+```
+1.0.0
+```
+
 ## Usage
 
 Instalation with npm:

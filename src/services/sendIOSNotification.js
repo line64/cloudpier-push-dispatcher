@@ -54,12 +54,12 @@ export default async function (state, params) {
 
         if(result.sent.length) {
 
-            bunyan.info('sent successfully', result);
+            bunyan.info(`sent successfully notification to recipient: ${recipient}`, result);
 
             return { success: true };
         }
 
-        bunyan.info('error sending notification', JSON.stringify(result));
+        bunyan.error(`error sending notification to recipient: ${recipient}`, result);
             
         return { success: false, status: result.failed[0].status, error: result.failed[0].response.reason };
         

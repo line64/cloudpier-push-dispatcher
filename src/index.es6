@@ -1,4 +1,5 @@
 import dotenv from 'dotenv';
+import { version } from '../package.json';
 
 import { setupStateAsync } from './bootstrap';
 import { startServiceAsync } from './runtime';
@@ -6,6 +7,8 @@ import { startServiceAsync } from './runtime';
 async function start() {
 
   dotenv.load({ silent: true });
+
+  console.log(`:::::::::::::::: CLOUDPIER PUSH DISPATCHER VERSION ${version} ::::::::::::::::`);
 
   const config = {
     LOG_LEVEL: process.env.LOG_LEVEL,
