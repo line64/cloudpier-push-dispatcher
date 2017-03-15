@@ -11,7 +11,7 @@ export async function startServiceAsync(config, state) {
     try {
       return await pushNotificationRunner(state, params);
     } catch (err) {
-      bunyan.error(err, 'error while processing PUSH_NOTIFICATION');
+      bunyan.error('error while processing PUSH_NOTIFICATION', err);
     }
 
   });

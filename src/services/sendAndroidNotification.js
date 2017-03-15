@@ -53,9 +53,9 @@ export default async function (state, params) {
 
         bunyan.info('processing callback from gcm', { response, gcmError });
 
-        if (gcmError) {
-          console.log(response.results);
-          reject(gcmError);
+        if (response.failure) {
+          bunyan.error(`gcm error for token ${recipient}`, response.results);
+          reject(response.results);
           return;
         }
 
@@ -65,8 +65,7 @@ export default async function (state, params) {
 
         let success = (gcmSuccess > 0);
 
-                  console.log(response.results);
-
+        bunyan.info(`gcm sent successfully to token ${recipient}`, response.results);
 
         resolve({ success });
 
